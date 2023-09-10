@@ -1,5 +1,7 @@
 const puppeteer = require("puppeteer");
 require("dotenv").config();
+const fs = require('fs'); // Importa o módulo fs para leitura de arquivos
+const caminhoArquivoJSON = "./BD-Ambientes.json";
 
 let chrome = {};
 let quantidadeTurmas = 0;
@@ -11,7 +13,7 @@ let ultimaConsulta = {
   professores: 'asd',
   salas: 'asd',
   dia: 'asd',
-  };
+};
 
 let horariosJsonFinal = []
 
@@ -28,246 +30,295 @@ const scrapeLogic = async (res) => {
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
   });
-  try {let page = await browser.newPage();
+  try {
+    let page = await browser.newPage();
     const pageBody = await page.$('body');
     const pageBodyHeight = await pageBody.boundingBox();
 
     await page.setViewport({
       width: 1920,
       height: 1080
-     })
-    await page.setDefaultNavigationTimeout(0); 
-          
-    console.log(quantidadeTurmas);
+    })
+    await page.setDefaultNavigationTimeout(0);
 
-      for (let i = 2; i <= 1000; i++) {
-        
-        console.log("Lendo turma",i,".");
-        await page.goto(`https://ifc-camboriu.edupage.org/timetable/view.php?num=223&class=*${i}`, {waitUntil: 'load', timeout: 0});
+    let salasUnicas = []
 
-        await page.waitForSelector('svg')
-        const cellsHandles = await page.$$('svg rect');
+    for (let i = 2; i <= 1000; i++) {
 
-        const horariosHandles = await page.$$('svg text');
+      console.log("Lendo turma", i, ".");
+      await page.goto(`https://ifc-camboriu.edupage.org/timetable/view.php?num=223&class=*${i}`, { waitUntil: 'load', timeout: 0 });
 
-        const lineHandles = await page.$$('svg line')
+      await page.waitForSelector('svg')
+      const cellsHandles = await page.$$('svg rect');
 
-        const svg = await page.$('svg');
-        //console.log(await svg.boundingBox())
-        const svgWidth = await svg.evaluate(x => x.getAttribute('width'))
-        //console.log({svgHeigh});
-        let svgTitle = ""
+      const horariosHandles = await page.$$('svg text');
+
+      const lineHandles = await page.$$('svg line')
+
+      const svg = await page.$('svg');
+      //console.log(await svg.boundingBox())
+      const svgWidth = await svg.evaluate(x => x.getAttribute('width'))
+      //console.log({svgHeigh});
+      let svgTitle = ""
 
 
-        let cells = [];
-        let horarios = [];
-        let semana = []
-        let horariosComeco = 0.0
-        let horariosFim = 0.0
-        async function buildReturn(object, y, x, height, title, width) {
-            object.push({
-                name: `${title}`,
-                posX: `${x}`,
-                posY: `${y}`,
-                itemHeight: `${height}`,
-                itemWidth: `${width}`
-            })
-        }
+      let cells = [];
+      let horarios = [];
+      let semana = []
+      let horariosComeco = 0.0
+      let horariosFim = 0.0
+      async function buildReturn(object, y, x, height, title, width) {
+        object.push({
+          name: `${title}`,
+          posX: `${x}`,
+          posY: `${y}`,
+          itemHeight: `${height}`,
+          itemWidth: `${width}`
+        })
+      }
 
-        
-        for (let t of cellsHandles) {
-            let y = await t.evaluate(x => x.getAttribute('y'));
-            let x = await t.evaluate(x => x.getAttribute('x'));
-            let height = await t.evaluate(x => x.getAttribute('height'));
-            let title = await t.evaluate(x => x.textContent);
-            let width = await t.evaluate(x => x.getAttribute('width'));
-            if (title != '') {buildReturn(cells, y, x, height, title, width)}
-        }
-        
-        const padrao = new RegExp(/\d{1,2}:\d{2} - \d{1,2}:\d{2}/);
-        const diasSemana = ["Seg","Ter","Qua","Qui","Sex","Sab",]
 
-        let countT = 0
+      for (let t of cellsHandles) {
+        let y = await t.evaluate(x => x.getAttribute('y'));
+        let x = await t.evaluate(x => x.getAttribute('x'));
+        let height = await t.evaluate(x => x.getAttribute('height'));
+        let title = await t.evaluate(x => x.textContent);
+        let width = await t.evaluate(x => x.getAttribute('width'));
+        if (title != '') { buildReturn(cells, y, x, height, title, width) }
+      }
 
-        for (let t of horariosHandles) {
-            let y = await t.evaluate(x => x.getAttribute('y'));
-            let x = await t.evaluate(x => x.getAttribute('x'));
-            let height = await t.evaluate(x => x.getAttribute('height'));
-            let title = await t.evaluate(x => x.textContent);
-            if (countT == 0) {svgTitle = title};
-            if (padrao.test(title)) {buildReturn(horarios, y, x, height, title)};
-            countT += 1
-        }
+      const padrao = new RegExp(/\d{1,2}:\d{2} - \d{1,2}:\d{2}/);
+      const diasSemana = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab",]
 
-        for (let t of horariosHandles) {
-            let y = await t.evaluate(x => x.getAttribute('y'));
-            let x = await t.evaluate(x => x.getAttribute('x'));
-            let height = await t.evaluate(x => x.getAttribute('height'));
-            let title = await t.evaluate(x => x.textContent);
-            
+      let countT = 0
 
-            if (diasSemana.includes(title)) {buildReturn(semana, y, x, height, title)};
-        }
+      for (let t of horariosHandles) {
+        let y = await t.evaluate(x => x.getAttribute('y'));
+        let x = await t.evaluate(x => x.getAttribute('x'));
+        let height = await t.evaluate(x => x.getAttribute('height'));
+        let title = await t.evaluate(x => x.textContent);
+        if (countT == 0) { svgTitle = title };
+        if (padrao.test(title)) { buildReturn(horarios, y, x, height, title) };
+        countT += 1
+      }
 
-        let lineWidth = 0.0
-        let comecoY = 100000
-        let finalY = -100000.0
-        let prev = -10000.0
+      for (let t of horariosHandles) {
+        let y = await t.evaluate(x => x.getAttribute('y'));
+        let x = await t.evaluate(x => x.getAttribute('x'));
+        let height = await t.evaluate(x => x.getAttribute('height'));
+        let title = await t.evaluate(x => x.textContent);
 
-        for (let t of lineHandles) {
 
-          let y = await t.evaluate(x => parseFloat(x.getAttribute('y1')));
-          let x1 = await t.evaluate(x => parseFloat(x.getAttribute('x1')));
-          let x2 = await t.evaluate(x => parseFloat(x.getAttribute('x2')));  
-          
-          dist = Math.sqrt(Math.pow(x2 - x1, 2))
+        if (diasSemana.includes(title)) { buildReturn(semana, y, x, height, title) };
+      }
 
-          let compare = await y > finalY
-          
-          if (compare) finalY = y;
-          prev = y
-          if (dist > lineWidth && y < comecoY) {lineWidth = dist; comecoY = y}
+      let lineWidth = 0.0
+      let comecoY = 100000
+      let finalY = -100000.0
+      let prev = -10000.0
 
-        }
-        comecoY = prev
+      for (let t of lineHandles) {
 
-        let tableHeight = finalY - comecoY
+        let y = await t.evaluate(x => parseFloat(x.getAttribute('y1')));
+        let x1 = await t.evaluate(x => parseFloat(x.getAttribute('x1')));
+        let x2 = await t.evaluate(x => parseFloat(x.getAttribute('x2')));
 
-        let cellHeight = tableHeight / horarios.length;
-        
-        let avaliableCells = []
+        dist = Math.sqrt(Math.pow(x2 - x1, 2))
 
-        let rangeHorarios = []
+        let compare = await y > finalY
 
-        let countH = 0
+        if (compare) finalY = y;
+        prev = y
+        if (dist > lineWidth && y < comecoY) { lineWidth = dist; comecoY = y }
 
-        for (let c of horarios) {
+      }
+      comecoY = prev
 
-          rangeHorarios.push({
-            name: `${c.name}`,
-            posYI: `${comecoY + (countH * cellHeight)}`,
-            posYF: `${(comecoY + (countH * cellHeight)) + cellHeight}`,
-            
+      let tableHeight = finalY - comecoY
+
+      let cellHeight = tableHeight / horarios.length;
+
+      let avaliableCells = []
+
+      let rangeHorarios = []
+
+      let countH = 0
+
+      for (let c of horarios) {
+
+        rangeHorarios.push({
+          name: `${c.name}`,
+          posYI: `${comecoY + (countH * cellHeight)}`,
+          posYF: `${(comecoY + (countH * cellHeight)) + cellHeight}`,
+
         })
 
         countH += 1
-          
+
+      }
+
+      for (let c of cells) {
+        let menorI = Infinity;
+        let menorF = Infinity;
+        let horaI = '';
+        let horaF = '';
+
+        for (let h of rangeHorarios) {
+          let difI = Math.abs(parseFloat(h.posYI) - parseFloat(c.posY));
+          //abs( dicionario_horarios[h][0] - ((cell.location['y']-135)))
+          let difF = Math.abs(parseFloat(h.posYF) - (parseFloat(c.posY) + parseFloat(c.itemHeight)))
+          //dicionario_horarios[h][1] - ((cell.location['y']-135) + cell.size['height'])
+
+          //console.log(h.posYF,c.posY,c.itemHeight,difF);
+
+          if (difI < menorI) {
+            menorI = difI;
+            horaI = `${h.name.substring(0, 5).trim()}`;
+          }
+
+          if (difF < menorF) {
+            menorF = difF;
+            horaF = `${h.name.slice(-5).trim()}`;
+          }
         }
 
-        for (let c of cells) {
-          let menorI = Infinity;
-          let menorF = Infinity;
-          let horaI = '';
-          let horaF = '';
-        
-          for (let h of rangeHorarios) {
-            let difI = Math.abs(parseFloat(h.posYI) - parseFloat(c.posY));
-            //abs( dicionario_horarios[h][0] - ((cell.location['y']-135)))
-            let difF = Math.abs(parseFloat(h.posYF) - (parseFloat(c.posY) + parseFloat(c.itemHeight)))
-              //dicionario_horarios[h][1] - ((cell.location['y']-135) + cell.size['height'])
+        let menorDif = Infinity;
+        let diaMaisProximo = '';
 
-            //console.log(h.posYF,c.posY,c.itemHeight,difF);
-        
-            if (difI < menorI) {
-              menorI = difI;
-              horaI = `${h.name.substring(0, 5).trim()}`;
-            }
-        
-            if (difF < menorF) {
-              menorF = difF;
-              horaF = `${h.name.slice(-5).trim()}`;
-            }
+        for (let d of semana) {
+          let dif = (d.posX - (c.itemWidth / 2)) - (c.posX);
+          dif = Math.abs(dif)
+
+          if (dif < menorDif) {
+            menorDif = dif;
+            diaMaisProximo = d.name;
           }
-        
-          let menorDif = Infinity;
-          let diaMaisProximo = '';
-        
-          for (let d of semana) {
-            let dif = (d.posX - (c.itemWidth / 2)) - (c.posX);
-            dif = Math.abs(dif)
-            
-            if (dif < menorDif) {
-              menorDif = dif;
-              diaMaisProximo = d.name;
-            }
-          }
-        
-          c.horaI = horaI;
-          c.horaF = horaF;
-          c.dia = diaMaisProximo;
         }
 
-        for (let c of cells) {
+        c.horaI = horaI;
+        c.horaF = horaF;
+        c.dia = diaMaisProximo;
+      }
 
-          let disciplina = ''
-          let professores = []
-          let salas = []
+      for (let c of cells) {
 
-          let dados = c.name.split("\n")
+        let disciplina = ''
+        let professores = []
+        let salas = []
 
-          if (dados.length > 2) {
-            disciplina = dados[0]; 
-            professores = dados[1]; 
-            salas = dados[2];
-            
-            let professoresS = professores.split("/")
+        let dados = c.name.split("\n")
+        let salasS = []
 
-            professoresS = professoresS.map(elemento => {
-              const palavras = elemento.split(',').map(palavra => palavra.trim().replace(/\s+/g, ''));
-              return palavras;
-            });
-            
-            let salasS = salas.split("/")
-            
-            salasS.map(elemento => elemento.trim());
-            
-            //console.log((cells[cells.length -1]));
-            horariosJsonFinal.push({
+        if (dados.length > 2) {
+          disciplina = dados[0];
+          professores = dados[1];
+          salas = dados[2];
+
+          let professoresS = professores.split("/")
+
+          professoresS = professoresS.map(elemento => {
+            const palavras = elemento.split(',').map(palavra => palavra.trim().replace(/\s+/g, ''));
+            return palavras;
+          });
+
+          salasS = salas.split("/")
+
+          salasS.map(elemento => elemento.trim());
+
+          //console.log((cells[cells.length -1]));
+          horariosJsonFinal.push({
+            turma: `${svgTitle}`,
+            horario: `${[c.horaI, c.horaF]}`,
+            disciplina: `${disciplina}`,
+            professores: `${professoresS}`,
+            salas: `${salasS}`,
+            dia: `${c.dia}`
+          })
+
+
+          if (c == cells[cells.length - 1]) {
+            if (svgTitle == ultimaConsulta.turma) {
+              console.log(horariosJsonFinal);
+              res.send(horariosJsonFinal)
+              validacao = false
+              console.log("Executado com sucesso.");
+              i = 1000
+              return
+            }
+            ultimaConsulta = {
               turma: `${svgTitle}`,
-              horario: `${[c.horaI,c.horaF]}`,
+              horario: `${[c.horaI, c.horaF]}`,
               disciplina: `${disciplina}`,
               professores: `${professoresS}`,
               salas: `${salasS}`,
               dia: `${c.dia}`
-            })
-            
-            
-                if (c == cells[cells.length -1]) {
-                  if (svgTitle == ultimaConsulta.turma) {
-                    console.log(horariosJsonFinal);
-                    res.send(horariosJsonFinal)
-                    validacao = false
-                    console.log("Executado com sucesso.");
-                    i = 1000
-                    return
-                  }
-                  ultimaConsulta = {
-                    turma: `${svgTitle}`,
-                    horario: `${[c.horaI,c.horaF]}`,
-                    disciplina: `${disciplina}`,
-                    professores: `${professoresS}`,
-                    salas: `${salasS}`,
-                    dia: `${c.dia}`
-                  }
-                }
-                
+            }
+          }
 
-              
+          for (let s of salasS) {
+            if (!salasUnicas.includes(s)) {
+
+              salasUnicas.push(s)
+              console.log(salasUnicas);
+
+            }
+
           }
 
 
-          //console.log("aaa",horariosJsonFinal[horariosJsonFinal.length -1],ultimaConsulta,validacao,"fffff");
+
+
+
         }
 
-        
       }
 
-      res.send(horariosJsonFinal)
-      console.log("Execução terminada.");
+    }
 
-    
+    // Lê o arquivo JSON existente
+    fs.readFile(caminhoArquivoJSON, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Erro ao ler o arquivo JSON:', err);
+        return;
+      }
 
-    } catch (e) {
+      try {
+        // Converte o conteúdo do arquivo JSON em um objeto JavaScript
+        const jsonData = JSON.parse(data);
+
+        // Para cada sala em salasS
+        for (let s of salasS) {
+          // Verifica se a sala já existe no JSON
+          if (!jsonData.some(item => item.nomes.includes(s))) {
+            // Se não existir, adiciona a sala ao JSON
+            jsonData.push({ nomes: [s] });
+          }
+        }
+
+        // Converte o objeto JavaScript de volta para JSON
+        const novoJSON = JSON.stringify(jsonData, null, 2);
+
+        // Escreve o JSON atualizado de volta ao arquivo
+        fs.writeFile(caminhoArquivoJSON, novoJSON, 'utf8', (err) => {
+          if (err) {
+            console.error('Erro ao escrever no arquivo JSON:', err);
+          } else {
+            console.log('Dados adicionados com sucesso ao arquivo JSON!');
+          }
+        });
+
+
+
+      } catch (error) {
+        console.error('Erro ao analisar o arquivo JSON:', error);
+      }
+    });
+    res.send(horariosJsonFinal)
+    console.log("Execução terminada.");
+
+
+
+  } catch (e) {
     console.error(e);
     res.send(`Something went wrong while running Puppeteer: ${e}`);
   } finally {
