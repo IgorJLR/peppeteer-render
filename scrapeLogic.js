@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 require("dotenv").config();
 const fs = require('fs'); // Importa o módulo fs para leitura de arquivos
-const caminhoArquivoJSON = "./BD-Ambientes.json";
+const caminhoArquivoJSON = "BD-Ambientes.json";
 
 let chrome = {};
 let quantidadeTurmas = 0;
@@ -76,6 +76,8 @@ const scrapeLogic = async (res) => {
           itemWidth: `${width}`
         })
       }
+
+      // TOALETE
 
 
       for (let t of cellsHandles) {
@@ -262,17 +264,9 @@ const scrapeLogic = async (res) => {
               console.log(salasUnicas);
 
             }
-
           }
-
-
-
-
-
         }
-
       }
-
     }
 
     // Lê o arquivo JSON existente
