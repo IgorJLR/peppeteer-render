@@ -2,8 +2,7 @@ const puppeteer = require("puppeteer");
 require("dotenv").config();
 
 let chrome = {};
-let puppeteer;
-let validacao = true
+let quantidadeTurmas = 0;
 
 let ultimaConsulta = {
   turma: 'asd',
@@ -37,16 +36,14 @@ const scrapeLogic = async (res) => {
       width: 1920,
       height: 1080
      })
-     
-     
-     
+    await page.setDefaultNavigationTimeout(0); 
+          
     console.log(quantidadeTurmas);
-    if (validacao) {
 
       for (let i = 2; i <= 1000; i++) {
         
-        console.log("Lendo turma.");
-        await page.goto(`https://ifc-camboriu.edupage.org/timetable/view.php?num=223&class=*${i}`);
+        console.log("Lendo turma",i,".");
+        await page.goto(`https://ifc-camboriu.edupage.org/timetable/view.php?num=223&class=*${i}`, {waitUntil: 'load', timeout: 0});
 
         await page.waitForSelector('svg')
         const cellsHandles = await page.$$('svg rect');
@@ -265,7 +262,10 @@ const scrapeLogic = async (res) => {
         
       }
 
-    } else {res.send(horariosJsonFinal)}
+      res.send(horariosJsonFinal)
+      console.log("Execução terminada.");
+
+    
 
     } catch (e) {
     console.error(e);
