@@ -227,20 +227,35 @@ const scrapeLogic = async (res) => {
 
           salasS.map(elemento => elemento.trim());
 
+          for (let s of salasS) {
+            if (!salasUnicas.includes(s)) {
+
+              salasUnicas.push(s)
+              console.log(salasUnicas);
+
+            }
+          }
+
           //console.log((cells[cells.length -1]));
-          horariosJsonFinal.push({
-            turma: `${svgTitle}`,
-            horario: `${[c.horaI, c.horaF]}`,
-            disciplina: `${disciplina}`,
-            professores: `${professoresS}`,
-            salas: `${salasS}`,
-            dia: `${c.dia}`
-          })
+          
 
 
           if (c == cells[cells.length - 1]) {
             if (svgTitle == ultimaConsulta.turma) {
               console.log(horariosJsonFinal);
+              for (let s of salasUnicas) {
+                horariosJsonFinal.push({
+                  nomes:[s],
+                  latitude:'',
+                  longitude:'',
+                  descricao:'',
+                  categoria:'',
+                  andar:'',
+                  bloco:'',
+                  imagens:[],
+                  turmas: {}
+                })
+              }
               res.send(horariosJsonFinal)
               validacao = false
               console.log("Executado com sucesso.");
@@ -257,56 +272,23 @@ const scrapeLogic = async (res) => {
             }
           }
 
-          for (let s of salasS) {
-            if (!salasUnicas.includes(s)) {
-
-              salasUnicas.push(s)
-              console.log(salasUnicas);
-
-            }
-          }
+          
         }
       }
     }
-
-    // Lê o arquivo JSON existente
-    fs.readFile(caminhoArquivoJSON, 'utf8', (err, data) => {
-      if (err) {
-        console.error('Erro ao ler o arquivo JSON:', err);
-        return;
-      }
-
-      try {
-        // Converte o conteúdo do arquivo JSON em um objeto JavaScript
-        const jsonData = JSON.parse(data);
-
-        // Para cada sala em salasS
-        for (let s of salasS) {
-          // Verifica se a sala já existe no JSON
-          if (!jsonData.some(item => item.nomes.includes(s))) {
-            // Se não existir, adiciona a sala ao JSON
-            jsonData.push({ nomes: [s] });
-          }
-        }
-
-        // Converte o objeto JavaScript de volta para JSON
-        const novoJSON = JSON.stringify(jsonData, null, 2);
-
-        // Escreve o JSON atualizado de volta ao arquivo
-        fs.writeFile(caminhoArquivoJSON, novoJSON, 'utf8', (err) => {
-          if (err) {
-            console.error('Erro ao escrever no arquivo JSON:', err);
-          } else {
-            console.log('Dados adicionados com sucesso ao arquivo JSON!');
-          }
-        });
-
-
-
-      } catch (error) {
-        console.error('Erro ao analisar o arquivo JSON:', error);
-      }
-    });
+    for (let s of salasUnicas) {
+      horariosJsonFinal.push({
+        nomes:[s],
+        latitude:'',
+        longitude:'',
+        descricao:'',
+        categoria:'',
+        andar:'',
+        bloco:'',
+        imagens:[],
+        turmas: {}
+      })
+    }
     res.send(horariosJsonFinal)
     console.log("Execução terminada.");
 
