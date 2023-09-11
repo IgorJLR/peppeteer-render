@@ -1,0 +1,906 @@
+{
+  "SL J - 102": {
+    "nomes": [
+      "SL J - 102",
+      "Sala Bloco J - 102"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Sala de Arte": {
+    "nomes": [
+      "Sala de Arte"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Lab. Análises Químicas": {
+    "nomes": [
+      "Lab. Análises Químicas",
+      "Laboratório de Análises Químicas"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Ginásio Q2": {
+    "nomes": [
+      "Ginásio Q2"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 103": {
+    "nomes": [
+      "SL J - 103",
+      "Sala Bloco J - 103"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-003": {
+    "nomes": [
+      "SL F-003",
+      "Sala Bloco F - 003"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Informática do Campus": {
+    "nomes": [
+      "Laboratório de Informática do Campus"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-004": {
+    "nomes": [
+      "SL F-004",
+      "Sala Bloco F - 004"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 005": {
+    "nomes": [
+      "SL J - 005",
+      "Sala Bloco J - 005"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Sala Mecanização": {
+    "nomes": [
+      "Sala Mecanização"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Ginasio": {
+    "nomes": [
+      "Ginasio",
+      "Ginásio"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 007": {
+    "nomes": [
+      "SL J - 007",
+      "Sala Bloco J - 007"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Ginásio Q1": {
+    "nomes": [
+      "Ginásio Q1"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-005": {
+    "nomes": [
+      "SL F-005",
+      "Sala Bloco F - 005"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 105": {
+    "nomes": [
+      "SL J - 105",
+      "Sala Bloco J - 105"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Software I": {
+    "nomes": [
+      "Laboratório de Software I",
+      "Laboratório de Software 1",
+      "Lab Soft I",
+      "Lab Soft 1"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 101": {
+    "nomes": [
+      "SL J - 101",
+      "Sala Bloco J - 101"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 006": {
+    "nomes": [
+      "SL J - 006",
+      "Sala Bloco J - 006"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 004": {
+    "nomes": [
+      "SL J - 004",
+      "Sala Bloco J - 004"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 002": {
+    "nomes": [
+      "SL J - 002",
+      "Sala Bloco J - 002"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 008": {
+    "nomes": [
+      "SL J - 008",
+      "Sala Bloco J - 008"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Física": {
+    "nomes": [
+      "Laboratório de Física"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Software III": {
+    "nomes": [
+      "Laboratório de Software III",
+      "Laboratório de Software 3",
+      "Lab Soft III",
+      "Lab Soft 3"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Redes": {
+    "nomes": [
+      "Laboratório de Redes",
+      "Lab Redes"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 107": {
+    "nomes": [
+      "SL J - 107",
+      "Sala Bloco J - 107"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 108": {
+    "nomes": [
+      "SL J - 108",
+      "Sala Bloco J - 108"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Software II": {
+    "nomes": [
+      "Laboratório de Software II",
+      "Laboratório de Software 2",
+      "Lab Soft II",
+      "Lab Soft 2"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Lab Proj": {
+    "nomes": [
+      "Lab Proj",
+      "Laboratório de Projetos"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-008": {
+    "nomes": [
+      "SL F-008",
+      "Sala Bloco F - 008"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL G -004": {
+    "nomes": [
+      "SL G -004",
+      "Sala Bloco G - 004"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL G -002": {
+    "nomes": [
+      "SL G -002",
+      "Sala Bloco G - 002"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Biologia": {
+    "nomes": [
+      "Laboratório de Biologia"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Química": {
+    "nomes": [
+      "Laboratório de Química"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório Avançado em Segurança e Redes": {
+    "nomes": [
+      "Laboratório Avançado em Segurança e Redes",
+      "LabLASER"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Webdesign": {
+    "nomes": [
+      "Laboratório de Webdesign",
+      "LabWebDesign"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL Atendimento Discente": {
+    "nomes": [
+      "SL Atendimento Discente",
+      "Sala de Atendimento ao Discente"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-105": {
+    "nomes": [
+      "SL F-105",
+      "Sala Bloco F - 105"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "EAD": {
+    "nomes": [
+      "EAD"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-006": {
+    "nomes": [
+      "SL F-006",
+      "Sala Bloco F - 006"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Recursos Hídricos": {
+    "nomes": [
+      "Laboratório de Recursos Hídricos",
+      "C 008"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "C",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Lab. Residuos Sólidos": {
+    "nomes": [
+      "Lab. Residuos Sólidos",
+      "Laboratório de Resíduos Sólidos"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 106": {
+    "nomes": [
+      "SL J - 106",
+      "Sala Bloco J - 106"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Lab. Gestão Ambiental": {
+    "nomes": [
+      "Lab. Gestão Ambiental",
+      "Laboratório de Gestão Ambiental"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 104": {
+    "nomes": [
+      "SL J - 104",
+      "Sala Bloco J - 104"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Silvicultura": {
+    "nomes": [
+      "Silvicultura"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Lab. C. Idosos": {
+    "nomes": [
+      "Lab. C. Idosos"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "CTICG 1": {
+    "nomes": [
+      "CTICG 1"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "CTICG 2": {
+    "nomes": [
+      "CTICG 2"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Pomerode, SC": {
+    "nomes": [
+      "Pomerode, SC"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-007": {
+    "nomes": [
+      "SL F-007",
+      "Sala Bloco F - 007"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Lab. Suporte Básico de Vida": {
+    "nomes": [
+      "Lab. Suporte Básico de Vida",
+      "Laboratório de Suporte Básico de Vida",
+      "D 009"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "D",
+    "imagens": [],
+    "turmas": {}
+  },
+  "S. Agroindustria": {
+    "nomes": [
+      "S. Agroindustria"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "IFC Brusque": {
+    "nomes": [
+      "IFC Brusque"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Escolas para Estágio 4": {
+    "nomes": [
+      "Escolas para Estágio 4"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL J - 003": {
+    "nomes": [
+      "SL J - 003",
+      "Sala Bloco J - 003"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Sala docente": {
+    "nomes": [
+      "Sala docente"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Escolas para Estágio 2": {
+    "nomes": [
+      "Escolas para Estágio 2"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-001": {
+    "nomes": [
+      "SL F-001",
+      "Sala Bloco F - 001"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-002": {
+    "nomes": [
+      "SL F-002",
+      "Sala Bloco F - 002"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Laboratório de Pedagogia": {
+    "nomes": [
+      "Laboratório de Pedagogia",
+      "Laboratório de Ensino do Curso de Pedagogia",
+      "F 108"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "F",
+    "imagens": [],
+    "turmas": {}
+  },
+  "SL F-106": {
+    "nomes": [
+      "SL F-106",
+      "Sala Bloco F - 106"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Lab. Hospedagem I": {
+    "nomes": [
+      "Lab. Hospedagem I",
+      "Laboratório de Hospedagem I",
+      "D 005"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "D",
+    "imagens": [],
+    "turmas": {}
+  },
+  "Lab. Hospedagem II": {
+    "nomes": [
+      "Lab. Hospedagem II",
+      "Laboratório de Hospedagem II",
+      "D 007"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "LapIMob": {
+    "nomes": [
+      "LapIMob",
+      "Laboratório de Pesquisas Imobiliárias",
+      "C 105"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  },
+  "LabGexi": {
+    "nomes": [
+      "LabGexi",
+      "Laboratório Gráfico para Experimentação Imobiliária",
+      "LAGI",
+      "Laboratório de Gerência Imobiliária"
+    ],
+    "latitude": "",
+    "longitude": "",
+    "descricao": "",
+    "categoria": "",
+    "andar": "",
+    "bloco": "",
+    "imagens": [],
+    "turmas": {}
+  }
+}
