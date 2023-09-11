@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 require("dotenv").config();
 const fs = require('fs'); // Importa o módulo fs para leitura de arquivos
+const { stringify } = require("querystring");
 const caminhoArquivoJSON = "BD-Ambientes.json";
 
 let chrome = {};
@@ -15,7 +16,7 @@ let ultimaConsulta = {
   dia: 'asd',
 };
 
-let horariosJsonFinal = []
+let horariosJsonFinal = {}
 
 const scrapeLogic = async (res) => {
   const browser = await puppeteer.launch({
@@ -226,16 +227,18 @@ const scrapeLogic = async (res) => {
           salasS = salas.split("/")
 
           salasS.map(elemento => elemento.trim());
+          
 
           for (let s of salasS) {
-            if (!salasUnicas.includes(s)) {
+            if (!salasUnicas.includes(s.trim())) {
 
-              salasUnicas.push(s)
+              salasUnicas.push(s.trim())
               console.log(salasUnicas);
 
             }
           }
-
+          let salasNoDUp = [...new Set(salasUnicas)];
+          salasUnicas = salasNoDUp
           //console.log((cells[cells.length -1]));
           
 
@@ -244,7 +247,7 @@ const scrapeLogic = async (res) => {
             if (svgTitle == ultimaConsulta.turma) {
               console.log(horariosJsonFinal);
               for (let s of salasUnicas) {
-                horariosJsonFinal.push({
+                horariosJsonFinal[`${s}`] = {
                   nomes:[s],
                   latitude:'',
                   longitude:'',
@@ -254,7 +257,7 @@ const scrapeLogic = async (res) => {
                   bloco:'',
                   imagens:[],
                   turmas: {}
-                })
+                }
               }
               res.send(horariosJsonFinal)
               validacao = false
@@ -277,7 +280,7 @@ const scrapeLogic = async (res) => {
       }
     }
     for (let s of salasUnicas) {
-      horariosJsonFinal.push({
+      horariosJsonFinal[`${s}`] = {
         nomes:[s],
         latitude:'',
         longitude:'',
@@ -287,10 +290,10 @@ const scrapeLogic = async (res) => {
         bloco:'',
         imagens:[],
         turmas: {}
-      })
+      }
     }
     res.send(horariosJsonFinal)
-    console.log("Execução terminada.");
+    console.log(horariosJsonFinal);
 
 
 
