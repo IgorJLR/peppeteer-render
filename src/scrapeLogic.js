@@ -79,8 +79,6 @@ const scrapeLogic = async (res) => {
       }
 
       // TOALETE
-
-
       for (let t of cellsHandles) {
         let y = await t.evaluate(x => x.getAttribute('y'));
         let x = await t.evaluate(x => x.getAttribute('x'));
@@ -227,7 +225,7 @@ const scrapeLogic = async (res) => {
           salasS = salas.split("/")
 
           salasS.map(elemento => elemento.trim());
-          
+
 
           for (let s of salasS) {
             if (!salasUnicas.includes(s.trim())) {
@@ -240,7 +238,7 @@ const scrapeLogic = async (res) => {
           let salasNoDUp = [...new Set(salasUnicas)];
           salasUnicas = salasNoDUp
           //console.log((cells[cells.length -1]));
-          
+
 
 
           if (c == cells[cells.length - 1]) {
@@ -248,14 +246,14 @@ const scrapeLogic = async (res) => {
               console.log(horariosJsonFinal);
               for (let s of salasUnicas) {
                 horariosJsonFinal[`${s}`] = {
-                  nomes:[s],
-                  latitude:'',
-                  longitude:'',
-                  descricao:'',
-                  categoria:'',
-                  andar:'',
-                  bloco:'',
-                  imagens:[],
+                  nomes: [s],
+                  latitude: '',
+                  longitude: '',
+                  descricao: '',
+                  categoria: '',
+                  andar: '',
+                  bloco: '',
+                  imagens: [],
                   turmas: {}
                 }
               }
@@ -274,27 +272,24 @@ const scrapeLogic = async (res) => {
               dia: `${c.dia}`
             }
           }
-
-          
         }
       }
     }
     for (let s of salasUnicas) {
       horariosJsonFinal[`${s}`] = {
-        nomes:[s],
-        latitude:'',
-        longitude:'',
-        descricao:'',
-        categoria:'',
-        andar:'',
-        bloco:'',
-        imagens:[],
+        nomes: [s],
+        latitude: '',
+        longitude: '',
+        descricao: '',
+        categoria: '',
+        andar: '',
+        bloco: '',
+        imagens: [],
         turmas: {}
       }
     }
     res.send(horariosJsonFinal)
     console.log(horariosJsonFinal);
-
 
 
   } catch (e) {
