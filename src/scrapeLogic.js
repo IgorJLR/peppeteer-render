@@ -1,11 +1,4 @@
-const puppeteer = require("puppeteer");
-require("dotenv").config();
-const fs = require('fs'); // Importa o módulo fs para leitura de arquivos
-const { stringify } = require("querystring");
-const caminhoArquivoJSON = "BD-Ambientes.json";
-
-let chrome = {};
-let quantidadeTurmas = 0;
+import { launch, executablePath as _executablePath } from "puppeteer";
 
 let ultimaConsulta = {
   turma: 'asd',
@@ -18,8 +11,8 @@ let ultimaConsulta = {
 
 let horariosJsonFinal = {}
 
-const scrapeLogic = async (res) => {
-  const browser = await puppeteer.launch({
+export default async function scrapeLogic (res) {
+  const browser = await launch({
     args: [
       "--disable-setuid-sandbox",
       "--no-sandbox",
@@ -29,7 +22,7 @@ const scrapeLogic = async (res) => {
     executablePath:
       process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
-        : puppeteer.executablePath(),
+        : _executablePath(),
   });
   try {
     let page = await browser.newPage();
@@ -40,7 +33,7 @@ const scrapeLogic = async (res) => {
       width: 1920,
       height: 1080
     })
-    await page.setDefaultNavigationTimeout(0);
+    page.setDefaultNavigationTimeout(0);
 
     let salasUnicas = []
 
@@ -51,23 +44,14 @@ const scrapeLogic = async (res) => {
 
       await page.waitForSelector('svg')
       const cellsHandles = await page.$$('svg rect');
-
       const horariosHandles = await page.$$('svg text');
-
       const lineHandles = await page.$$('svg line')
-
-      const svg = await page.$('svg');
-      //console.log(await svg.boundingBox())
-      const svgWidth = await svg.evaluate(x => x.getAttribute('width'))
-      //console.log({svgHeigh});
       let svgTitle = ""
 
 
       let cells = [];
       let horarios = [];
       let semana = []
-      let horariosComeco = 0.0
-      let horariosFim = 0.0
       async function buildReturn(object, y, x, height, title, width) {
         object.push({
           name: `${title}`,
@@ -124,9 +108,9 @@ const scrapeLogic = async (res) => {
         let x1 = await t.evaluate(x => parseFloat(x.getAttribute('x1')));
         let x2 = await t.evaluate(x => parseFloat(x.getAttribute('x2')));
 
-        dist = Math.sqrt(Math.pow(x2 - x1, 2))
+        let dist = Math.sqrt(Math.pow(x2 - x1, 2))
 
-        let compare = await y > finalY
+        let compare = y > finalY
 
         if (compare) finalY = y;
         prev = y
@@ -138,8 +122,6 @@ const scrapeLogic = async (res) => {
       let tableHeight = finalY - comecoY
 
       let cellHeight = tableHeight / horarios.length;
-
-      let avaliableCells = []
 
       let rangeHorarios = []
 
@@ -153,9 +135,7 @@ const scrapeLogic = async (res) => {
           posYF: `${(comecoY + (countH * cellHeight)) + cellHeight}`,
 
         })
-
         countH += 1
-
       }
 
       for (let c of cells) {
@@ -166,11 +146,7 @@ const scrapeLogic = async (res) => {
 
         for (let h of rangeHorarios) {
           let difI = Math.abs(parseFloat(h.posYI) - parseFloat(c.posY));
-          //abs( dicionario_horarios[h][0] - ((cell.location['y']-135)))
           let difF = Math.abs(parseFloat(h.posYF) - (parseFloat(c.posY) + parseFloat(c.itemHeight)))
-          //dicionario_horarios[h][1] - ((cell.location['y']-135) + cell.size['height'])
-
-          //console.log(h.posYF,c.posY,c.itemHeight,difF);
 
           if (difI < menorI) {
             menorI = difI;
@@ -237,9 +213,6 @@ const scrapeLogic = async (res) => {
           }
           let salasNoDUp = [...new Set(salasUnicas)];
           salasUnicas = salasNoDUp
-          //console.log((cells[cells.length -1]));
-
-
 
           if (c == cells[cells.length - 1]) {
             if (svgTitle == ultimaConsulta.turma) {
@@ -258,7 +231,6 @@ const scrapeLogic = async (res) => {
                 }
               }
               res.send(horariosJsonFinal)
-              validacao = false
               console.log("Executado com sucesso.");
               i = 1000
               return
@@ -299,5 +271,3 @@ const scrapeLogic = async (res) => {
     await browser.close();
   }
 };
-
-module.exports = { scrapeLogic };
