@@ -1,4 +1,4 @@
-# Peppeteer-Render (Parte do Projeto Meu IFC)
+# Pupeteer-Render (Parte do Projeto Meu IFC)
 Este repositório faz parte de um projeto maior chamado "Meu IFC". Esta é a primeira parte do projeto, focada na captura automatizada de informações atualizadas do site de horários do Instituto. O "Meu IFC" é composto por outros dois repositórios:
 
 [Mbtiles Server](https://github.com/Lucas-Vicenzzo/mbtiles-server): Responsável por disponibilizar os mapas para o front-end.
