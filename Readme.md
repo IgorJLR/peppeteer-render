@@ -14,7 +14,7 @@ Este repositório contém um script que utiliza a biblioteca Puppeteer para extr
 Antes de executar o script, certifique-se de ter as seguintes dependências instaladas em sua máquina:
 
 - Node.js: [Download Node.js](https://nodejs.org/)
-- npm: Geralmente é instalado automaticamente com o Node.js
+- npm: Instruções de [Download](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (Geralmente é instalado automaticamente com o Node.js)
 
 ## Instalação
 
